@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  height: 55px;
+  width: 100%; /* Ensures the header takes full screen width */
+  box-sizing: border-box; /* Ensures padding is included within the width */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.title {
+  color: #ad2831;
+  font-size: 24px;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.home-section {
+  text-align: center;
+  margin-top: 80px; /* Adjust this margin to place it under the header */
+  margin-bottom: 40px;
+}
+
+.content {
+  margin-top: 80px; /* Adjust based on your header height */
+  padding: 20px;
+}
+
+.notifications img {
+  width: 24px;
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.home-heading {
+  font-family: 'Roboto Slab', serif;
+  font-size: 36px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.paragraph-container {
+  display: flex;
+  justify-content: center; /* Center the paragraph box */
+  margin: 10px auto; /* Adjust margin as needed */
+}
+
+.home-paragraph {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  width: 80%; /* Controls the width of the box, adjust as necessary */
+  text-align: center; /* Center-align text inside the box */
+}
+
+/* Apply "Montserrat" for card texts */
+.card p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Container for the two columns */
+.container {
+  display: flex;
+  justify-content: center;  /* Centers the columns horizontally */
+  margin: 50px 0;
+  gap: 500px;  /* Space between the columns */
+}
+
+/* Column Style */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 65px;  /* Space between rows (cards) */
+}
+
+/* Add equal width and height to all cards */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensure the text and image are well spaced */
+  background-color: #f4f4f4;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  width: 300px; /* Set equal width */
+  height: 100px; /* Set equal height */
+}
+
+/* Ensure the images are scaled properly without distorting */
+.card img {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain; /* Ensures the image scales without being distorted */
+}
+
+/* Card text (Sport name) */
+.card p {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-5px);  /* Hover effect to lift the card slightly */
+}
+
+/* Ensure the layout adapts to smaller screens */
+@media (max-width: 600px) {
+  .header {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px;
+  }
+
+  .title {
+      font-size: 20px;
+  }
+
+  .about-link {
+      font-size: 16px;
+  }
+}
