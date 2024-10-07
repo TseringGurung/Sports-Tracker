@@ -142,6 +142,10 @@ body {
   transform: translateY(-5px);  /* Hover effect to lift the card slightly */
 }
 
+a{
+  text-decoration: none;
+}
+
 /* Ensure the layout adapts to smaller screens */
 @media (max-width: 600px) {
   .header {
