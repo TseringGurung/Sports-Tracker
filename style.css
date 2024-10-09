@@ -59,17 +59,17 @@ body {
   color: black;
 }
 
+.paragraph-container {
+  display: flex;
+  justify-content: center; /* Center the paragraph box */
+  margin: 10px auto; /* Adjust margin as needed */
+}
+
 .home-heading {
   font-family: 'Roboto Slab', serif;
   font-size: 36px;
   text-align: center;
   text-decoration: underline;
-}
-
-.paragraph-container {
-  display: flex;
-  justify-content: center; /* Center the paragraph box */
-  margin: 10px auto; /* Adjust margin as needed */
 }
 
 .home-paragraph {
@@ -142,6 +142,46 @@ body {
   transform: translateY(-5px);  /* Hover effect to lift the card slightly */
 }
 
+/* Title style (logo on the far left) */
+.title {
+  color: #ad2831;
+  font-size: 24px;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Right side of the header: Search, Notifications, Home */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between items */
+}
+
+/* Search bar styling */
+#search-bar {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Notification icon */
+#notification-icon {
+  width: 24px;
+  cursor: pointer;
+}
+
+/* Home link on the far right */
+.home-link a {
+  font-size: 18px;
+  color: #ad2831;
+  text-decoration: none;
+}
+
+.home-link a:hover {
+  text-decoration: underline;
+}
 a{
   text-decoration: none;
 }
