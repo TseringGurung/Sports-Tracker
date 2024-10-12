@@ -186,6 +186,56 @@ a{
   text-decoration: none;
 }
 
+/* Container for the NFL content (Three columns layout) */
+.college-football-container, .college-basketball-container, .soccer-container .mlb-container, .nba-container, .nhl-container, .wnba-container, .nfl-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Column section styles */
+.scores-section, .teams-section, .news-section {
+  flex-basis: 32%; /* Ensure each section takes 32% of the container width */
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scores-section h2, .teams-section h2, .news-section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Individual item styles */
+.game, .team, .article {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Game (score), team, and article headings */
+.game h3, .team h3, .article h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.game p, .team p, .article p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.article a {
+  color: #333;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
 /* Ensure the layout adapts to smaller screens */
 @media (max-width: 600px) {
   .header {
