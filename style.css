@@ -187,7 +187,7 @@ a{
 }
 
 /* Container for the NFL content (Three columns layout) */
-.college-football-container, .college-basketball-container, .soccer-container .mlb-container, .nba-container, .nhl-container, .wnba-container, .nfl-container {
+.college-football-container, .college-basketball-container, .soccer-container, .mlb-container, .nba-container, .nhl-container, .wnba-container, .nfl-container {
   display: flex;
   justify-content: space-between;
   padding: 40px 20px;
