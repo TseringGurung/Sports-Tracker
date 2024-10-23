@@ -742,3 +742,89 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchCollegeFootballTeams();
     fetchCollegeFootballNews();
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.getElementById('carousel');
+    const body = document.body;
+
+    const sportItems = document.querySelectorAll('.carousel-item');
+
+    sportItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const selectedSport = item.getAttribute('data-sport');
+            body.setAttribute('data-background', selectedSport);
+        });
+    });
+
+    /* Horizontal scrolling */
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carousel.classList.add('active');
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        carousel.classList.remove('active');
+    });
+
+    carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        carousel.classList.remove('active');
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2; // Faster scroll
+        carousel.scrollLeft = scrollLeft - walk;
+    });
+});
+
+// Dark Mode Toggle
+var checkbox = document.getElementById('theme-toggle-checkbox');
+var themeLabel = document.getElementById('theme-label');
+var logo = document.querySelector('.title'); // Assuming the title is used as the logo text
+
+// Check if user has a preference saved in localStorage
+if (localStorage.getItem('dark-mode') === 'enabled') {
+  enableDarkMode();
+} else {
+  disableDarkMode();
+}
+
+// Add event listener to the checkbox
+checkbox.addEventListener('change', function() {
+  if (this.checked) {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+});
+
+// Function to enable dark mode
+function enableDarkMode() {
+  document.body.classList.add('dark-mode');
+  document.body.classList.remove('light-mode');
+  localStorage.setItem('dark-mode', 'enabled');
+  themeLabel.textContent = 'Light Mode';
+  themeLabel.style.color = '#f7f7f7'; // Ensure toggle label is white in dark mode
+  logo.style.color = '#f7f7f7'; // Ensure logo is white in dark mode
+}
+
+// Function to disable dark mode
+function disableDarkMode() {
+  document.body.classList.add('light-mode');
+  document.body.classList.remove('dark-mode');
+  localStorage.setItem('dark-mode', 'disabled');
+  themeLabel.textContent = 'Dark Mode';
+  themeLabel.style.color = '#333'; // Ensure toggle label is dark in light mode
+  logo.style.color = '#333'; // Ensure logo is dark in light mode
+}
+

@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLS - Sports Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="sport.css" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -16,47 +12,47 @@
         <div class="header-right">
             <input type="text" id="search-bar" placeholder="Search...">
             <img src="images/notificationslogo.png" alt="Notifications" id="notification-icon">
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle-checkbox">
+                    <span class="slider"></span>
+                </label>
+                <span id="theme-label">Dark Mode</span>
+            </div>
             <div class="home-link">
                 <a href="index.html">Home</a>
             </div>
         </div>
     </header>
 
+    <!-- MLS Section -->
     <section class="home-section">
         <h1 class="home-heading">MLS</h1>
         <div class="paragraph-container">
             <p class="home-paragraph">
-                Welcome to the MLS section. Here you can track real-time statistics, player performance, and game outcomes for Soccer.
+                Welcome to the MLS section. Track real-time statistics, player performance, and game outcomes for Major League Soccer (MLS).
             </p>
         </div>
     </section>
-    <!-- Three-column layout container -->
-    <div class="nfl-container">
-        <!-- Scores Container (Left Column) -->
-        <section class="scores-section">
+
+    <!-- Stacked Layout for Info Containers -->
+    <div class="container">
+        <section class="section">
             <h2>MLS Scores</h2>
             <div id="mls-scores">
-                <!-- Scores will be dynamically inserted here -->
+                <!-- Scores dynamically inserted here -->
             </div>
         </section>
 
-        <!-- Teams Container (Middle Column) -->
-        <section class="teams-section">
+        <section class="section">
             <h2>MLS Teams</h2>
             <div id="mls-teams">
-                <!-- Teams will be dynamically inserted here -->
+                <!-- Teams dynamically inserted here -->
             </div>
         </section>
 
-        <!-- News Container (Right Column) -->
-        <section class="news-section">
+        <section class="section">
             <h2>Latest MLS News</h2>
             <div id="mls-news">
-                <!-- News articles will be dynamically inserted here -->
-            </div>
-        </section>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+                <!-- News dynamically inserted here -->
+            </

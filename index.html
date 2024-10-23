@@ -4,94 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <h1 class="title">Sports Tracker</h1>
-        <div class="notifications">
-            <img src="images/notificationslogo.png" alt="Notifications" id="notification-icon">
+    <header>
+        <div class="nav">
+            <div class="logo">Sports Tracker</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle-checkbox">
+                <span class="slider round"></span>
+            </label>
+            <span id="theme-label">Light Mode</span>
         </div>
     </header>
 
-    <!-- Home Section -->
-    <section class="home-section">
-        <h1 class="home-heading">Home</h1>
-        <div class="paragraph-container">
-        <p class="home-paragraph">
-            Welcome to the Sports Tracker, your go-to platform for real-time statistics across a variety of sports leagues, including the NBA, NFL, MLB, and more. Here, you can track your favorite teams, players, and games with up-to-date data. Whether you're a casual fan or a dedicated sports analyst, our tracker offers insights on player stats, game outcomes, and rankings. Explore upcoming games, compare player performances, and stay informed with the latest news.
-        </p>
-        </div>
+    <!-- Falling Emoji Grid -->
+    <section class="emoji-container">
+        <div class="emoji">⚽️</div>
+        <div class="emoji">🏀</div>
+        <div class="emoji">🏈</div>
+        <div class="emoji">⚾️</div>
+        <div class="emoji">🎾</div>
+        <div class="emoji">🏐</div>
+        <div class="emoji">🏉</div>
+        <div class="emoji">🥎</div>
+        <div class="emoji">🥏</div>
+        <div class="emoji">⛳️</div>
     </section>
 
-    <div class="container">
-        <div class="column">
-            <a href="NBA.html">
-                <div class="card">
-                
-                    <img src="images/NBAlogo.png" alt="Basketball" class="NBAimg">
-                    <p>NBA / Basketball</p>
-                </div>
-            </a>
-            
-            <a href="NFL.html">
-                <div class="card">
-                    <img src="images/NFLlogo.png" alt="Football" class="NFLimg">
-                    <p>NFL / Football</p>
-                </div>
-            </a>
-            
-            <a href="MLB.html">
-                <div class="card">
-                    <img src="images/MLBlogo.png" alt="Baseball" class="MLBimg">
-                    <p>MLB / Baseball</p>
-                </div>
-    
-            </a>
-            
-            <a href="NCAA-BB.html">
-                <div class="card">
-                    <img src="images/NCAA_BB.png" alt="CollegeBasketball" class="NCAABBimg">
-                    <p>College Basketball</p>
-                </div>
-            </a> 
-        </div>
-    
-        <div class="column">
-            <a href="WNBA.html">
-                <div class="card">
-                    <img src="images/WNBAlogo.png" alt="Women's Basketball" class="WNBAimg">
-                    <p>WNBA / Women's Basketball</p>
-                </div>
-            </a>
-            
-            <a href="NHL.html">
-                <div class="card">
-                    <img src="images/NHLlogo.png" alt="Hockey" class="NHLimg">
-                    <p>NHL / Hockey</p>
-                </div>
-            </a>
-            
-            <a href="MLS.html">
-                <div class="card">
-                    <img src="images/PremierLeague.webp" alt="Soccer" class="MLSimg">
-                    <p>Premier League / Soccer</p>
-                </div>
-            </a>
-            
-            <a href="NCAA-FB.html">
-                <div class="card">
-                    <img src="images/NCAA_FB.jfif" alt="CollegeFootball" class="NCAAFBimg">
-                    <p>College Football</p>
-                </div>
-            </a>
-        </div>
-    </div>
+    <main>
+        <section class="hero">
+            <h1>Your Platform for Real-Time Sports Tracking</h1>
+            <p>Keep up with the latest updates across your favorite leagues: NBA, NFL, MLB, and more. Track player stats, game outcomes, and live rankings.</p>
+        </section>
+
+        <section class="cta-buttons">
+            <a href="sports.html" class="button" id="get-started-button">Get started</a>
+            <a href="#browse-work" class="button">Browse our work</a>
+        </section>
+
+        <section id="about" class="info-section">
+            <h2>About Us</h2>
+            <p>Sports Tracker is the best platform to stay up-to-date with real-time sports statistics and insights. Whether you're a casual fan or a sports analyst, we offer in-depth data on your favorite teams and players.</p>
+        </section>
+
+        <section id="features" class="info-section">
+            <h2>Our Features</h2>
+            <ul class="feature-list">
+                <li>Live Game Tracking</li>
+                <li>Player Stats Comparison</li>
+                <li>Game Predictions and Insights</li>
+                <li>Live Score Updates</li>
+            </ul>
+        </section>
+    </main>
+    <script src="main.js"></script>
 </body>
 </html>
-
-
