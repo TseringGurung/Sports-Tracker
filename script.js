@@ -86,7 +86,6 @@ function fetchNFLNews() {
 
 // Fetch all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    fetchNFLScores();
     fetchNFLTeams();
     fetchNFLNews();
 });
@@ -180,7 +179,6 @@ function fetchMLBNews() {
 
 // Fetch all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    fetchMLBScores();
     fetchMLBTeams();
     fetchMLBNews();
 });
@@ -273,7 +271,6 @@ function fetchNBANews() {
 
 // Fetch all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    fetchNBAScores();
     fetchNBATeams();
     fetchNBANews();
 });
@@ -366,7 +363,6 @@ function fetchWNBANews() {
 
 // Fetch all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    fetchWNBAScores();
     fetchWNBATeams();
     fetchWNBANews();
 });
@@ -459,7 +455,6 @@ function fetchNHLNews() {
 
 // Fetch all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    fetchNHLScores();
     fetchNHLTeams();
     fetchNHLNews();
 });
@@ -552,7 +547,6 @@ function fetchSoccerNews() {
 
 // Fetch all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    fetchSoccerScores();
     fetchSoccerTeams();
     fetchSoccerNews();
 });
@@ -645,7 +639,6 @@ function fetchCollegeBasketballNews() {
 
 // Fetch all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    fetchCollegeBasketballScores();
     fetchCollegeBasketballTeams();
     fetchCollegeBasketballNews();
 });
@@ -738,7 +731,6 @@ function fetchCollegeFootballNews() {
 
 // Fetch all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    fetchCollegeFootballScores();
     fetchCollegeFootballTeams();
     fetchCollegeFootballNews();
 });
@@ -828,3 +820,142 @@ function disableDarkMode() {
   logo.style.color = '#333'; // Ensure logo is dark in light mode
 }
 
+function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
+    const leagueUrls = {
+        'NFL': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard',
+        'College Football': 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard',
+        'NBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+        'MLB': 'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard',
+        'NHL': 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
+        'WNBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard',
+        'College Basketball': 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
+        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/scoreboard'
+    };
+
+    const gameInfoUrls = {
+        'NFL': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=',
+        'College Football': 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=',
+        'NBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=',  
+        'MLB': 'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/summary?event=',
+        'NHL': 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary?event=',
+        'WNBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=',
+        'College Basketball': 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary?event=',
+        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/summary?event='
+    };
+
+
+    const containerIds = {
+        'NFL': 'nfl-scores',
+        'NBA': 'nba-scores',
+        'College Football': 'college-football-scores',
+        'MLB': 'mlb-scores',
+        'NHL': 'nhl-scores',
+        'WNBA': 'wnba-scores',
+        'College Basketball': 'college-basketball-scores',
+        'Soccer': 'mls-scores'
+    };
+
+    if (!leagueUrls[league] || !gameInfoUrls[league]) {
+        console.error("Invalid league specified.");
+        return;
+    }
+
+    const containerId = containerIds[league];
+    const container = document.getElementById(containerId);
+
+    if (!container) {
+        console.error("Container ID not found in HTML:", containerId);
+        return;
+    }
+
+    fetch(leagueUrls[league])
+        .then(response => response.json())
+        .then(data => {
+            const games = data.events.slice(0, numberOfGames);
+
+            if (games.length === 0) {
+                console.log("No games found for", league);
+                return;
+            }
+
+            container.innerHTML = `<h2>${league} Last ${numberOfGames} Games Points History</h2>`;
+            const historyDiv = document.createElement('div');
+            historyDiv.className = 'games-history';
+
+            games.forEach(game => {
+                const gameId = game.id;
+                const homeTeam = game.competitions[0].competitors[0];
+                const awayTeam = game.competitions[0].competitors[1];
+                const date = new Date(game.date).toLocaleDateString();
+
+                const gameDiv = document.createElement('div');
+                gameDiv.className = 'game-history-item';
+                gameDiv.innerHTML = `
+                    <div class="game-header">
+                        <h3>${homeTeam.team.displayName} vs ${awayTeam.team.displayName}</h3>
+                        <p class="game-date">${date}</p>
+                    </div>
+                    <div class="game-score">
+                        <p>${homeTeam.team.shortDisplayName}: ${homeTeam.score || '0'}</p>
+                        <p>${awayTeam.team.shortDisplayName}: ${awayTeam.score || '0'}</p>
+                    </div>
+                `;
+
+                // Fetch additional game data for player stats
+                fetch(gameInfoUrls[league] + gameId)
+                    .then(response => response.json())
+                    .then(gameData => {
+                        console.log("Fetched game data for", gameId, ":", gameData); // Debug: Check game data structure
+                        if (gameData.boxscore && gameData.boxscore.teams) {
+                            const playerStatsDiv = document.createElement('div');
+                            playerStatsDiv.className = 'player-stats';
+
+                            gameData.boxscore.teams.forEach(team => {
+                                const teamStatsDiv = document.createElement('div');
+                                teamStatsDiv.className = 'team-stats';
+                                teamStatsDiv.innerHTML = `<h4>${team.team.displayName} Top Performers</h4>`;
+
+                                if (team.statistics && team.statistics[0] && team.statistics[0].athletes) {
+                                    const topPlayers = team.statistics[0].athletes
+                                        .slice(0, 3)  // Show top 3 players for each team
+                                        .map(player => {
+                                            const points = player.stats && player.stats.points ? player.stats.points : '0';
+                                            return `<p>${player.athlete.displayName}: ${points} pts</p>`;
+                                        })
+                                        .join('');
+
+                                    teamStatsDiv.innerHTML += topPlayers;
+                                } else {
+                                    teamStatsDiv.innerHTML += "<p>No player stats available</p>";
+                                }
+
+                                playerStatsDiv.appendChild(teamStatsDiv);
+                            });
+
+                            gameDiv.appendChild(playerStatsDiv);
+                        }
+                    })
+                    .catch(error => console.error("Error fetching player stats:", error));
+
+                historyDiv.appendChild(gameDiv);
+            });
+
+            container.appendChild(historyDiv);
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            container.innerHTML += '<p class="error">Failed to load points history. Please try again later.</p>';
+        });
+}
+
+// Call the function to fetch NFL scores and display the latest 5 games
+ document.addEventListener("DOMContentLoaded", () => {
+            fetchPointsOverGamesWithPlayers("NBA", 5); 
+            fetchPointsOverGamesWithPlayers("NFL", 5); 
+            fetchPointsOverGamesWithPlayers("NHL", 5); 
+            fetchPointsOverGamesWithPlayers("College Football", 5); 
+            fetchPointsOverGamesWithPlayers("Soccer", 5); 
+            fetchPointsOverGamesWithPlayers("College Basketball", 5); 
+            fetchPointsOverGamesWithPlayers("WNBA", 5); 
+            fetchPointsOverGamesWithPlayers("MLB", 5); 
+});

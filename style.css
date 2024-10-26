@@ -303,3 +303,87 @@ body.dark-mode footer {
 .emoji:nth-child(8) { left: 45vw; animation-duration: 8.5s; }
 .emoji:nth-child(9) { left: 75vw; animation-duration: 9.5s; }
 .emoji:nth-child(10) { left: 90vw; animation-duration: 10.5s; }
+
+/* Points Container for Game Scores and Player Stats */
+#points-container {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 100px auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+#points-container h2 {
+  font-size: 26px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.points-container .game {
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.points-container .game h3 {
+  font-size: 20px;
+  color: #ad2831;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.points-container .game .game-score {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.points-container .game .game-score p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.points-container .game .player-stats {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.points-container .game .player-stats h4 {
+  font-size: 18px;
+  color: #ad2831;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.points-container .game .player-stats .player {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  margin: 5px 0;
+}
+
+.points-container .game .player-stats .player p {
+  font-size: 16px;
+  color: #333;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
