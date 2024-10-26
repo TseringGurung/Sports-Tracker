@@ -37,6 +37,8 @@ header {
   font-size: 32px;
   font-weight: 700;
   color: #ad2831;
+  font-family: "Pacifico", cursive;
+  font-style: normal;
 }
 
 nav ul {
@@ -50,7 +52,7 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 700;
   color: #333;
   font-size: 16px;
   position: relative;
@@ -79,7 +81,7 @@ body.dark-mode nav ul li a {
 .theme-toggle {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .switch {

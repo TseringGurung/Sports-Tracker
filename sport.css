@@ -22,7 +22,6 @@ body {
   position: relative;
 }
 
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -48,7 +47,7 @@ body {
   color: #ad2831;
   font-size: 24px;
   font-family: "Pacifico", cursive;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 
@@ -192,6 +191,7 @@ body.dark-mode {
 
 body.dark-mode h1,
 body.dark-mode h2,
+body.dark-mode h3,
 body.dark-mode p,
 body.dark-mode a,
 body.dark-mode li {

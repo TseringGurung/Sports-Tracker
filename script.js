@@ -562,7 +562,7 @@ function fetchCollegeBasketballScores() {
     fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard')
         .then(response => response.json())
         .then(data => {
-            const scoresContainer = document.getElementById('college-basketball-scores');
+            const scoresContainer = document.getElementById('ncaa-bb-scores');
             const games = data.events;
 
             if (games.length === 0) {
@@ -597,7 +597,7 @@ function fetchCollegeBasketballTeams() {
     fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams')
         .then(response => response.json())
         .then(data => {
-            const teamsContainer = document.getElementById('college-basketball-teams');
+            const teamsContainer = document.getElementById('ncaa-bb-teams');
             const teams = data.sports[0].leagues[0].teams;
 
             teams.forEach(teamObj => {
@@ -623,7 +623,7 @@ function fetchCollegeBasketballNews() {
     fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/news')
         .then(response => response.json())
         .then(data => {
-            const newsContainer = document.getElementById('college-basketball-news');
+            const newsContainer = document.getElementById('ncaa-bb-news');
             const articles = data.articles;
 
             articles.forEach(article => {
@@ -655,7 +655,7 @@ function fetchCollegeFootballScores() {
     fetch('https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard')
         .then(response => response.json())
         .then(data => {
-            const scoresContainer = document.getElementById('college-football-scores');
+            const scoresContainer = document.getElementById('ncaa-fb-scores');
             const games = data.events;
 
             if (games.length === 0) {
@@ -681,7 +681,7 @@ function fetchCollegeFootballScores() {
         })
         .catch(error => {
             console.error('Error fetching College Football scores:', error);
-            document.getElementById('college-football-scores').innerHTML = "<p>Failed to load scores. Please try again later.</p>";
+            document.getElementById('ncaa-fb-scores').innerHTML = "<p>Failed to load scores. Please try again later.</p>";
         });
 }
 
@@ -690,7 +690,7 @@ function fetchCollegeFootballTeams() {
     fetch('https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams')
         .then(response => response.json())
         .then(data => {
-            const teamsContainer = document.getElementById('college-football-teams');
+            const teamsContainer = document.getElementById('ncaa-fb-teams');
             const teams = data.sports[0].leagues[0].teams;
 
             teams.forEach(teamObj => {
@@ -707,7 +707,7 @@ function fetchCollegeFootballTeams() {
         })
         .catch(error => {
             console.error('Error fetching College Football teams:', error);
-            document.getElementById('college-football-teams').innerHTML = "<p>Failed to load teams. Please try again later.</p>";
+            document.getElementById('ncaa-fb-teams').innerHTML = "<p>Failed to load teams. Please try again later.</p>";
         });
 }
 
@@ -716,7 +716,7 @@ function fetchCollegeFootballNews() {
     fetch('https://site.api.espn.com/apis/site/v2/sports/football/college-football/news')
         .then(response => response.json())
         .then(data => {
-            const newsContainer = document.getElementById('college-football-news');
+            const newsContainer = document.getElementById('ncaa-fb-news');
             const articles = data.articles;
 
             articles.forEach(article => {
@@ -732,7 +732,7 @@ function fetchCollegeFootballNews() {
         })
         .catch(error => {
             console.error('Error fetching College Football news:', error);
-            document.getElementById('college-football-news').innerHTML = "<p>Failed to load news. Please try again later.</p>";
+            document.getElementById('ncaa-fb-news').innerHTML = "<p>Failed to load news. Please try again later.</p>";
         });
 }
 
