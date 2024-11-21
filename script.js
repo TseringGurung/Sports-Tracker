@@ -862,22 +862,12 @@ function ncaabbshowPopup(teamName, abbreviation, location) {
         <h3>Players:</h3>
     `;
 
-    // Clear any previous player data
-    playerList.innerHTML = '';
-
-    // Get players for the team from static data
-    const players = ncaabbPlayerData[teamName];
-
-    if (players && players.length > 0) {
-        // Display each player in the list
-        players.forEach(player => {
-            const playerItem = document.createElement('li');
-            playerItem.textContent = `${player.name} - Position: ${player.position}`;
-            playerList.appendChild(playerItem);
-        });
-    } else {
-        playerList.innerHTML = '<p>No players available for this team.</p>';
-    }
+    playerList.innerHTML = `
+        <p>To see the full roster and details for ${teamName}, visit 
+        <a href="https://www.espn.com/mens-college-basketball/teams" target="_blank" rel="noopener noreferrer">
+            ESPN Men's College Basketball Teams
+        </a>.</p>
+    `;
 
     // Display the popup
     popup.style.display = 'flex';
@@ -998,22 +988,13 @@ function ncaafbshowPopup(teamName, abbreviation, location) {
         <h3>Players:</h3>
     `;
 
-    // Clear any previous player data
-    playerList.innerHTML = '';
+    playerList.innerHTML = `
+        <p>To see the full roster and details for ${teamName}, visit 
+        <a href="https://www.espn.com/college-football/teams" target="_blank" rel="noopener noreferrer">
+            ESPN College Football Teams
+        </a>.</p>
+    `;
 
-    // Get players for the team from static data
-    const players = ncaafbPlayerData[teamName];
-
-    if (players && players.length > 0) {
-        // Display each player in the list
-        players.forEach(player => {
-            const playerItem = document.createElement('li');
-            playerItem.textContent = `${player.name} - Position: ${player.position}`;
-            playerList.appendChild(playerItem);
-        });
-    } else {
-        playerList.innerHTML = '<p>No players available for this team.</p>';
-    }
 
     // Display the popup
     popup.style.display = 'flex';
@@ -1266,22 +1247,12 @@ function ncaawbbshowPopup(teamName, abbreviation, location) {
         <h3>Players:</h3>
     `;
 
-    // Clear any previous player data
-    playerList.innerHTML = '';
-
-    // Get players for the team from static data
-    const players = ncaawbbPlayerData[teamName];
-
-    if (players && players.length > 0) {
-        // Display each player in the list
-        players.forEach(player => {
-            const playerItem = document.createElement('li');
-            playerItem.textContent = `${player.name} - Position: ${player.position}`;
-            playerList.appendChild(playerItem);
-        });
-    } else {
-        playerList.innerHTML = '<p>No players available for this team.</p>';
-    }
+    playerList.innerHTML = `
+        <p>To see the full roster and details for ${teamName}, visit 
+        <a href="https://www.espn.com/womens-college-basketball/teams" target="_blank" rel="noopener noreferrer">
+            ESPN Women's College Basketball Teams
+        </a>.</p>
+    `;
 
     // Display the popup
     popup.style.display = 'flex';
