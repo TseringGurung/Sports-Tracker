@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+
 </head>
 <body>
     <header>
@@ -17,18 +19,17 @@
             <nav>
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
+
         <div class="theme-toggle">
             <label class="switch">
                 <input type="checkbox" id="theme-toggle-checkbox">
                 <span class="slider round"></span>
             </label>
-            <span id="theme-label">Light Mode</span>
+            <span id="theme-label">Dark Mode</span>
         </div>
     </header>
 
@@ -44,6 +45,7 @@
         <div class="emoji">🥎</div>
         <div class="emoji">🥏</div>
         <div class="emoji">⛳️</div>
+        <div class="emoji">🏒</div>
     </section>
 
     <main>
@@ -57,20 +59,24 @@
             <a href="#browse-work" class="button">Browse our work</a>
         </section>
 
-        <section id="about" class="info-section">
-            <h2>About Us</h2>
-            <p>Sports Tracker is the best platform to stay up-to-date with real-time sports statistics and insights. Whether you're a casual fan or a sports analyst, we offer in-depth data on your favorite teams and players.</p>
-        </section>
-
-        <section id="features" class="info-section">
-            <h2>Our Features</h2>
-            <ul class="feature-list">
-                <li>Live Game Tracking</li>
-                <li>Player Stats Comparison</li>
-                <li>Game Predictions and Insights</li>
-                <li>Live Score Updates</li>
-            </ul>
-        </section>
+        <div class="info-sections-container">
+            <section id="about" class="info-section">
+                <h2>About Us</h2>
+                <p>Sports Tracker is a platform for staying up-to-date with real-time sports insights and analytics. Our website covers a wide range of sports, including NBA, NFL, MLB, soccer leagues, and more. Whether you're a casual fan or a sports analyst, we offer an extensive set of tools and resources to keep you informed and engaged with your favorite teams and players.</p>
+            </section>
+    
+            <section id="features" class="info-section">
+                <h2>Our Features</h2>
+                <ul class="feature-list">
+                    <li>Live Game Tracking</li>
+                    <li>Player Stats Comparison</li>
+                    <li>Live Score Updates</li>
+                    <li>Game Predictions and Insights</li>
+                    <li>Latest Sports News</li>
+                    
+                </ul>
+            </section>
+        </div>
     </main>
     <script src="main.js"></script>
 </body>

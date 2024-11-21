@@ -7,6 +7,7 @@
 }
 
 body {
+  font-family: 'Montserrat', sans-serif;
   background-color: #f7f7f7;
   font-size: 18px;
   line-height: 1.6;
@@ -26,6 +27,11 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
+  background: linear-gradient(90deg, #f89b9b, #ebd86d);
+}
+
+body.dark-mode header{
+  background: linear-gradient(90deg, #3eb99f, #4a6de2);
 }
 
 .nav {
@@ -33,10 +39,10 @@ header {
   align-items: center;
 }
 
-.logo {
+.logo{
   font-size: 32px;
-  font-weight: 700;
-  color: #ad2831;
+  font-weight: 500;
+  color: #ad2831 !important;
   font-family: "Pacifico", cursive;
   font-style: normal;
 }
@@ -52,7 +58,7 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
   color: #333;
   font-size: 16px;
   position: relative;
@@ -154,7 +160,7 @@ body.dark-mode .hero {
 
 .hero h1 {
   font-size: 42px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
@@ -168,13 +174,13 @@ body.dark-mode .hero {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .button {
   padding: 12px 25px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
   color: #333;
   background-color: #fff;
@@ -190,20 +196,31 @@ body.dark-mode .hero {
   color: #fff;
 }
 
+.info-sections-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 20px;
+}
+
 .info-section {
-  text-align: center;
-  padding: 30px 20px;
+  flex: 1;
+  padding: 20px;
+  border-radius: 12px;
   background-color: #f7f7f7;
-  margin-top: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  text-align: center;
 }
 
 body.dark-mode .info-section {
   background-color: #333;
+  color: #f7f7f7;
 }
 
 .info-section h2 {
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 10px;
 }
 
@@ -305,3 +322,211 @@ body.dark-mode footer {
 .emoji:nth-child(8) { left: 45vw; animation-duration: 8.5s; }
 .emoji:nth-child(9) { left: 75vw; animation-duration: 9.5s; }
 .emoji:nth-child(10) { left: 90vw; animation-duration: 10.5s; }
+
+/* Points Container for Game Scores and Player Stats */
+#points-container {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 100px auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+#points-container h2 {
+  font-size: 26px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.points-container .game {
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.points-container .game h3 {
+  font-size: 20px;
+  color: #ad2831;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.points-container .game .game-score {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.points-container .game .game-score p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.points-container .game .player-stats {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.points-container .game .player-stats h4 {
+  font-size: 18px;
+  color: #ad2831;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.points-container .game .player-stats .player {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  margin: 5px 0;
+}
+
+.points-container .game .player-stats .player p {
+  font-size: 16px;
+  color: #333;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff; /* Light background for light mode */
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  max-height: 80vh; /* Limit the height to 80% of the viewport */
+  overflow-y: auto; /* Enable vertical scrolling */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #333; /* Dark text for light mode */
+  position: relative; /* For close button positioning */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333; /* Dark text for light mode */
+}
+
+#nba-teams, #wnba-teams, #nfl-teams, #mlb-teams, #nhl-teams, #ncaa-bb-teams, #ncaa-wbb-teams, #ncaa-fb-teams, #premier-teams, #mls-teams{
+  display: flex; /* Arrange children in a row */
+  flex-wrap: wrap; /* Allow wrapping to the next row if space runs out */
+  gap: 20px; /* Add spacing between items */
+  justify-content: center; /* Center items horizontally */
+  padding: 0;
+}
+
+/* General Team Styles */
+.team {
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd; /* Light border for light mode */
+  border-radius: 5px;
+  background-color: #f9f9f9; /* Light gray background for light mode */
+  color: #333; /* Dark text for light mode */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+/* Dark Mode Styles */
+body.dark-mode .team {
+  background-color: #333; /* Dark gray background */
+  color: #f7f7f7; /* White text */
+  border: 1px solid #555; /* Slightly lighter border for contrast */
+}
+
+/* Hover Animation */
+.team:hover {
+  transform: translateY(-5px); /* Slight lift */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Dark Mode Hover Animation */
+body.dark-mode .team:hover {
+  background-color: #444; /* Slightly lighter shade on hover */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Light shadow effect */
+}
+
+body.dark-mode .popup-content {
+  background-color: #333; /* Dark background */
+  color: #f7f7f7; /* Light text */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Light shadow for contrast */
+}
+
+/* Ensure all text within popup-content is light in dark mode */
+body.dark-mode .popup-content h2,
+body.dark-mode .popup-content p,
+body.dark-mode .popup-content strong,
+body.dark-mode .popup-content ul,
+body.dark-mode .popup-content li {
+  color: #f7f7f7; /* White text */
+}
+
+body.dark-mode .close-btn {
+  color: #f7f7f7; /* Light color for close button in dark mode */
+}
+
+body.dark-mode .team strong,
+body.dark-mode .team span {
+    color: #f7f7f7; /* Light text for numbering */
+}
+
+/* Remove bullet points from the player list in the popup */
+#player-list {
+  list-style-type: none; /* Removes bullet points */
+  padding-left: 0; /* Removes left indentation */
+  margin: 0; /* Removes any extra margin */
+}
+
+/* Style the scrollbar inside the popup */
+.popup-content::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.popup-content::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for the track */
+  border-radius: 10px; /* Rounded edges */
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+  background: #ad2831; /* Matches the accent color of the design */
+  border-radius: 10px; /* Rounded scrollbar thumb */
+  border: 2px solid #fff; /* Adds a border for contrast */
+}
+
+.popup-content::-webkit-scrollbar-thumb:hover {
+  background: #7d1d24; /* Slightly darker shade on hover */
+}

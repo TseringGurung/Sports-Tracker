@@ -24,7 +24,7 @@ body.dark-mode {
 }
 
 header {
-  background-color: #fff;
+  background: linear-gradient(90deg, #f89b9b, #ebd86d);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,16 +32,17 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
+  transition: background-color 0.3s ease;
 }
 
 body.dark-mode header {
-  background-color: #333;
+  background: linear-gradient(90deg, #3eb99f, #4a6de2);
 }
 
 .logo {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 500;
   color: #ad2831;
 }
 
@@ -125,12 +126,14 @@ body.dark-mode .logo {
 .sports-selection h1 {
   font-size: 36px;
   margin-bottom: 40px;
+  text-decoration: underline;
 }
 
 .sports-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 30px;
+  row-gap: 100px;
   justify-items: center;
 }
 
@@ -142,6 +145,7 @@ body.dark-mode .logo {
   border-radius: 10px;
   transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   width: 200px;
+  
 }
 
 .sport-card img {
@@ -224,7 +228,7 @@ body.dark-mode footer {
                 <input type="checkbox" id="theme-toggle-checkbox">
                 <span class="slider round"></span>
             </label>
-            <span id="theme-label">Light Mode</span>
+            <span id="theme-label">Dark Mode</span>
         </div>
     </header>
 
@@ -234,36 +238,54 @@ body.dark-mode footer {
             <div class="sports-grid">
                 <a href="nba.html" class="sport-card">
                     <img src="images/NBAlogo.png" alt="NBA Basketball">
-                    <p>NBA / Basketball</p>
+                    <p>National Basketball Association</p>
                 </a>
+
+                <a href="wnba.html" class="sport-card">
+                  <img src="images/WNBAlogo.png" alt="WNBA Women's Basketball">
+                  <p>Women’s National Basketball Association</p>
+                </a>
+
                 <a href="nfl.html" class="sport-card">
                     <img src="images/NFLlogo.png" alt="NFL Football">
-                    <p>NFL / Football</p>
+                    <p>National Football League</p>
                 </a>
+
                 <a href="mlb.html" class="sport-card">
                     <img src="images/MLBlogo.png" alt="MLB Baseball">
-                    <p>MLB / Baseball</p>
+                    <p>Major League Baseball</p>
                 </a>
+
                 <a href="nhl.html" class="sport-card">
                     <img src="images/NHLlogo.png" alt="NHL Hockey">
-                    <p>NHL / Hockey</p>
+                    <p>National Hockey League</p>
                 </a>
-                <a href="wnba.html" class="sport-card">
-                    <img src="images/WNBAlogo.png" alt="WNBA Women's Basketball">
-                    <p>WNBA / Women’s Basketball</p>
-                </a>
-                <a href="mls.html" class="sport-card">
-                    <img src="images/PremierLeague.webp" alt="MLS Soccer">
-                    <p>Premier League / Soccer</p>
-                </a>
+                
                 <a href="ncaa-bb.html" class="sport-card">
-                    <img src="images/NCAA_BB.png" alt="NCAA College Basketball">
-                    <p>College Basketball</p>
+                  <img src="images/NCAA_BB.png" alt="NCAA College Basketball">
+                  <p>College Basketball</p>
                 </a>
+
+                <a href="NCAA-WBB.html" class="sport-card">
+                  <img src="images/NCAAWomenBasketball.webp" alt="NCAA College WBasketball">
+                  <p>Women’s College Basketball</p>
+                  </a>
+
                 <a href="ncaa-fb.html" class="sport-card">
-                    <img src="images/NCAA_FB.png" alt="NCAA College Football">
-                    <p>College Football</p>
+                  <img src="images/NCAA_FB.png" alt="NCAA College Football">
+                  <p>College Football</p>
                 </a>
+
+                <a href="premier.html" class="sport-card">
+                    <img src="images/PremierLeague.webp" alt="Premier League Soccer">
+                    <p>Premier League Soccer</p>
+                </a>
+
+                <a href="mls.html" class="sport-card">
+                  <img src="images/MLSlogo.png" alt="MLS Soccer">
+                  <p>Major League Soccer</p>
+                </a>
+
             </div>
         </section>
     </main>
