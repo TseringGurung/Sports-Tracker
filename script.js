@@ -444,6 +444,8 @@ function fetchWNBAScores() {
             document.getElementById('wnba-scores').innerHTML = "<p>Failed to load scores. Please try again later.</p>";
         });
 }
+
+
 // Function to show the popup with team details
 function wnbashowPopup(teamName, abbreviation, location) {
     const popup = document.getElementById('player-popup');
@@ -1423,6 +1425,48 @@ function disableDarkMode() {
   logo.style.color = '#333'; // Ensure logo is dark in light mode
 }
 
+document.getElementById('search-bar').addEventListener('input', (e) => {
+    const searchQuery = e.target.value.toLowerCase();
+    const teamElements = document.querySelectorAll('.team'); // Adjust selector based on your structure
+
+    // Remove previous highlights and reset content
+    teamElements.forEach((team) => {
+        team.innerHTML = team.textContent; // Reset content to original team name
+        team.classList.remove('highlight'); // Remove highlight class
+    });
+
+    // If searchQuery is empty, stop further execution
+    if (!searchQuery) return;
+
+    // Highlight matching teams and scroll to the first match
+    let firstMatch = null;
+    teamElements.forEach((team) => {
+        const teamName = team.textContent;
+        const lowerTeamName = teamName.toLowerCase();
+
+        if (lowerTeamName.includes(searchQuery)) {
+            const startIndex = lowerTeamName.indexOf(searchQuery);
+            const endIndex = startIndex + searchQuery.length;
+
+            // Split the team name into three parts: before, match, after
+            const beforeMatch = teamName.slice(0, startIndex);
+            const match = teamName.slice(startIndex, endIndex);
+            const afterMatch = teamName.slice(endIndex);
+
+            // Combine parts with <span> wrapping the matching part
+            team.innerHTML = `${beforeMatch}<span class="highlight">${match}</span>${afterMatch}`;
+
+            if (!firstMatch) {
+                firstMatch = team; // Save the first matching element
+            }
+        }
+    });
+
+    // Scroll to the first match if it exists
+    if (firstMatch) {
+        firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+});
 
 function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
     const leagueUrls = {
@@ -1433,7 +1477,7 @@ function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
         'NHL': 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
         'WNBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard',
         'College Basketball': 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
-        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/scoreboard'
+        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard'
     };
 
     const gameInfoUrls = {
@@ -1444,7 +1488,7 @@ function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
         'NHL': 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary?event=',
         'WNBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=',
         'College Basketball': 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary?event=',
-        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/summary?event='
+        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary?event='
     };
 
     const containerIds = {
@@ -1481,7 +1525,7 @@ function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
                 return;
             }
 
-            container.innerHTML = `<h2>Points History of Latest Games </h2>`;
+            container.innerHTML = `<h2>${league} Last ${numberOfGames} Games Points History</h2>`;
             const historyDiv = document.createElement('div');
             historyDiv.className = 'games-history';
 
@@ -1508,30 +1552,23 @@ function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
                 fetch(gameInfoUrls[league] + gameId)
                     .then(response => response.json())
                     .then(gameData => {
-                        if (gameData.boxscore && gameData.boxscore.players) {
+                        console.log("Fetched game data for", gameId, ":", gameData); // Debug: Check game data structure
+                        if (gameData && gameData.boxscore && gameData.boxscore.players) {
                             const playerStatsDiv = document.createElement('div');
                             playerStatsDiv.className = 'player-stats';
 
-                            gameData.boxscore.players.forEach(team => {
+                            gameData.boxscore.players.forEach(teamStats => {
                                 const teamStatsDiv = document.createElement('div');
                                 teamStatsDiv.className = 'team-stats';
-                                teamStatsDiv.innerHTML = `<h4>${team.team.displayName} Top Performers</h4>`;
+                                teamStatsDiv.innerHTML = `<h4>${teamStats.team.displayName} Top Performers</h4>`;
 
-                                if (team.statistics) {
-                                    // Collect players with points and sort them
-                                    const playersWithPoints = team.statistics
-                                        .flatMap(stat => stat.athletes)
-                                        .map(player => ({
-                                            name: player.athlete.displayName,
-                                            points: parseInt(player.stats.points) || 0 // Ensure points is a number
-                                        }))
-                                        .sort((a, b) => b.points - a.points); // Sort by highest points
-
-                                    // Get top 3 players
-                                    const topPlayers = playersWithPoints
-                                        .slice(0, 3)
+                                if (teamStats.statistics) {
+                                    const topPlayers = teamStats.statistics
+                                        .flatMap(stat => stat.athletes || [])
+                                        .slice(0, 3) // Show top 3 players for each team
                                         .map(player => {
-                                            return `<p>${player.name}: ${player.points} pts</p>`;
+                                            const points = player.stats && player.stats.points ? player.stats.points : '0';
+                                            return `<p>${player.athlete.displayName}: ${points} pts</p>`;
                                         })
                                         .join('');
 
@@ -1544,6 +1581,8 @@ function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
                             });
 
                             gameDiv.appendChild(playerStatsDiv);
+                        } else {
+                            gameDiv.innerHTML += "<p>No player stats available</p>";
                         }
                     })
                     .catch(error => console.error("Error fetching player stats:", error));
@@ -1570,5 +1609,3 @@ function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
             fetchPointsOverGamesWithPlayers("WNBA", 5); 
             fetchPointsOverGamesWithPlayers("MLB", 5); 
 });
-
-//ad7906df2amsh1da51729520b38ep1426d6jsnfc7d7829c06b

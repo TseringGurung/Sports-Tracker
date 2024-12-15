@@ -147,7 +147,7 @@ body.dark-mode footer {
 
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 30px 10px;
   background-color: #f7f7f7;
   color: #333;
   transition: background-color 0.6s ease, color 0.6s ease;
@@ -200,7 +200,7 @@ body.dark-mode .hero {
   display: flex;
   flex-direction: row;
   gap: 30px;
-  padding: 20px;
+  padding: 40px;
 }
 
 .info-section {
@@ -216,6 +216,11 @@ body.dark-mode .hero {
 body.dark-mode .info-section {
   background-color: #333;
   color: #f7f7f7;
+}
+
+body.dark-mode .contact-box {
+  background-color: #3a3a3a;
+  color: #ffffff;
 }
 
 .info-section h2 {
@@ -529,4 +534,219 @@ body.dark-mode .team span {
 
 .popup-content::-webkit-scrollbar-thumb:hover {
   background: #7d1d24; /* Slightly darker shade on hover */
+}
+
+.highlight {
+  background-color: yellow;
+  color: black;
+}
+
+body.dark-mode .highlight {
+  background-color: orange; 
+  color: white; 
+}
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Space between divs */
+  margin: 50px auto;
+  margin-top: 0%;
+}
+
+.contact-box {
+  width: 100%; /* Set width to half the page */
+  background-color: #f8f8f8; /* Light background for contrast */
+  color: #333; /* Dark text color */
+  padding: 20px; /* Add padding for content spacing */
+  margin-bottom: 30px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  text-align: center; /* Center the text inside the div */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: space-between; /* Push logos to opposite sides */
+  align-items: center; /* Vertically center the logos */
+  margin: 20px; /* Adjust spacing if necessary */
+}
+
+.gmail-logo {
+  flex: 1; /* Adjust space for Gmail logo */
+  text-align: left; /* Align Gmail logo to the left */
+}
+
+.linkedin-logo {
+  flex: 1; /* Adjust space for LinkedIn logo */
+  text-align: right; /* Align LinkedIn logo to the right */
+}
+
+.logo-container img {
+  max-width: 50px; /* Adjust size of the logos */
+  height: auto;
+}
+
+.contact-box p {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds space between the text and the logo */
+}
+
+.contact-box .icon {
+  width: 20px; /* Adjust the size of the icons */
+  height: auto;
+}
+
+.logo-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #ccc; /* Optional: Add a line separating the logos from the cards */
+}
+
+.logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100px; /* Adjust size */
+}
+
+.logo-item img {
+  width: 70px; /* Set desired width */
+  height: 70px; /* Set desired height */
+  object-fit: contain; /* Ensure the image scales without distortion */
+  margin-bottom: 10px;
+  border-radius: 8px; /* Optional: Adds rounded corners to the images */
+  background-color: #fff; /* Optional: Ensures consistent background if logos have transparency */
+  padding: 5px; /* Optional: Adds some padding inside the bounding box */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for better visuals */
+}
+
+.logo-item p {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.login-section {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-section h1 {
+  margin-bottom: 20px;
+}
+
+.login-section label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.login-section input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.login-section button {
+  width: 100%;
+  padding: 10px;
+  background: #ad2831;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-section button:hover {
+  background: #7d1d24;
+}
+
+.signup-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100;
+  padding: 20px;
+}
+
+.signup-section h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.signup-section form {
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.signup-section form label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.signup-section form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.signup-section form button {
+  background-color: #ad2831;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.signup-section form button:hover {
+  background-color: #e64555;
+}
+
+.signup-section p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-section p a {
+  color: #ad2831;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-section p a:hover {
+  text-decoration: underline;
 }
