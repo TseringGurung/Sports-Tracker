@@ -1470,46 +1470,38 @@ document.getElementById('search-bar').addEventListener('input', (e) => {
 
 function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
     const leagueUrls = {
-        'NFL': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard',
-        'College Football': 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard',
         'NBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+        'WNBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard',
+        'NFL': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard',
         'MLB': 'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard',
         'NHL': 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
-        'WNBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard',
         'College Basketball': 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
-        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard'
-    };
-
-    const gameInfoUrls = {
-        'NFL': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=',
-        'College Football': 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=',
-        'NBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=',  
-        'MLB': 'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/summary?event=',
-        'NHL': 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary?event=',
-        'WNBA': 'https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=',
-        'College Basketball': 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary?event=',
-        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary?event='
+        'College Football': 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard',
+        'Women College BasketBall': 'https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/scoreboard',
+        'Soccer': 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard',
+        'MLS': 'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard'
     };
 
     const containerIds = {
-        'NFL': 'nfl-scores',
         'NBA': 'nba-scores',
-        'College Football': 'college-football-scores',
+        'WNBA': 'wnba-scores',
+        'NFL': 'nfl-scores',
         'MLB': 'mlb-scores',
         'NHL': 'nhl-scores',
-        'WNBA': 'wnba-scores',
-        'College Basketball': 'college-basketball-scores',
-        'Soccer': 'mls-scores'
+        'College Basketball': 'ncaa-bb-scores',
+        'College Football': 'ncaa-fb-scores',
+        'Women College BasketBall': 'ncaa-wbb-scores',
+        'Soccer': 'premier-scores',
+        'MLS': 'mls-scores'
     };
 
-    if (!leagueUrls[league] || !gameInfoUrls[league]) {
-        console.error("Invalid league specified.");
+    if (!leagueUrls[league]) {
+        console.error("Invalid league specified:", league);
         return;
     }
 
     const containerId = containerIds[league];
     const container = document.getElementById(containerId);
-
     if (!container) {
         console.error("Container ID not found in HTML:", containerId);
         return;
@@ -1520,27 +1512,32 @@ function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
         .then(data => {
             const games = data.events.slice(0, numberOfGames);
 
-            if (games.length === 0) {
-                console.log("No games found for", league);
+            if (!games.length) {
+                container.innerHTML = `<p>No games found for ${league}.</p>`;
                 return;
             }
 
-            container.innerHTML = `<h2>${league} Last ${numberOfGames} Games Points History</h2>`;
+            container.innerHTML = `<h2>${league} - Last ${numberOfGames} Games</h2>`;
             const historyDiv = document.createElement('div');
             historyDiv.className = 'games-history';
 
             games.forEach(game => {
-                const gameId = game.id;
                 const homeTeam = game.competitions[0].competitors[0];
                 const awayTeam = game.competitions[0].competitors[1];
-                const date = new Date(game.date).toLocaleDateString();
+                const date = new Date(game.date).toLocaleString();
+                const status = game.competitions[0].status.type.shortDetail;
+                const venue = game.competitions[0]?.venue?.fullName || "Unknown Venue";
+                const homeRecord = homeTeam.records?.[0]?.summary || "N/A";
+                const awayRecord = awayTeam.records?.[0]?.summary || "N/A";
 
                 const gameDiv = document.createElement('div');
                 gameDiv.className = 'game-history-item';
                 gameDiv.innerHTML = `
                     <div class="game-header">
-                        <h3>${homeTeam.team.displayName} vs ${awayTeam.team.displayName}</h3>
-                        <p class="game-date">${date}</p>
+                        <h3>${homeTeam.team.displayName} (${homeRecord}) vs ${awayTeam.team.displayName} (${awayRecord})</h3>
+                        <p><strong>Date:</strong> ${date}</p>
+                        <p><strong>Status:</strong> ${status}</p>
+                        <p><strong>Venue:</strong> ${venue}</p>
                     </div>
                     <div class="game-score">
                         <p>${homeTeam.team.shortDisplayName}: ${homeTeam.score || '0'}</p>
@@ -1548,64 +1545,26 @@ function fetchPointsOverGamesWithPlayers(league, numberOfGames) {
                     </div>
                 `;
 
-                // Fetch additional game data for player stats
-                fetch(gameInfoUrls[league] + gameId)
-                    .then(response => response.json())
-                    .then(gameData => {
-                        console.log("Fetched game data for", gameId, ":", gameData); // Debug: Check game data structure
-                        if (gameData && gameData.boxscore && gameData.boxscore.players) {
-                            const playerStatsDiv = document.createElement('div');
-                            playerStatsDiv.className = 'player-stats';
-
-                            gameData.boxscore.players.forEach(teamStats => {
-                                const teamStatsDiv = document.createElement('div');
-                                teamStatsDiv.className = 'team-stats';
-                                teamStatsDiv.innerHTML = `<h4>${teamStats.team.displayName} Top Performers</h4>`;
-
-                                if (teamStats.statistics) {
-                                    const topPlayers = teamStats.statistics
-                                        .flatMap(stat => stat.athletes || [])
-                                        .slice(0, 3) // Show top 3 players for each team
-                                        .map(player => {
-                                            const points = player.stats && player.stats.points ? player.stats.points : '0';
-                                            return `<p>${player.athlete.displayName}: ${points} pts</p>`;
-                                        })
-                                        .join('');
-
-                                    teamStatsDiv.innerHTML += topPlayers || "<p>No player stats available</p>";
-                                } else {
-                                    teamStatsDiv.innerHTML += "<p>No player stats available</p>";
-                                }
-
-                                playerStatsDiv.appendChild(teamStatsDiv);
-                            });
-
-                            gameDiv.appendChild(playerStatsDiv);
-                        } else {
-                            gameDiv.innerHTML += "<p>No player stats available</p>";
-                        }
-                    })
-                    .catch(error => console.error("Error fetching player stats:", error));
-
                 historyDiv.appendChild(gameDiv);
             });
 
             container.appendChild(historyDiv);
         })
         .catch(error => {
-            console.error("Error fetching data:", error);
-            container.innerHTML += '<p class="error">Failed to load points history. Please try again later.</p>';
+            console.error("Error fetching data for", league, ":", error);
+            container.innerHTML = `<p>Failed to load ${league} games. Please try again later.</p>`;
         });
 }
 
-// Call the function to fetch NFL scores and display the latest 5 games
- document.addEventListener("DOMContentLoaded", () => {
-            fetchPointsOverGamesWithPlayers("NBA", 5); 
-            fetchPointsOverGamesWithPlayers("NFL", 5); 
-            fetchPointsOverGamesWithPlayers("NHL", 5); 
-            fetchPointsOverGamesWithPlayers("College Football", 5); 
-            fetchPointsOverGamesWithPlayers("Soccer", 5); 
-            fetchPointsOverGamesWithPlayers("College Basketball", 5); 
-            fetchPointsOverGamesWithPlayers("WNBA", 5); 
-            fetchPointsOverGamesWithPlayers("MLB", 5); 
+document.addEventListener("DOMContentLoaded", () => {
+    fetchPointsOverGamesWithPlayers("NBA", 10);
+    fetchPointsOverGamesWithPlayers("WNBA", 10);
+    fetchPointsOverGamesWithPlayers("NFL", 10);
+    fetchPointsOverGamesWithPlayers("MLB", 10);
+    fetchPointsOverGamesWithPlayers("NHL", 10);
+    fetchPointsOverGamesWithPlayers("College Basketball", 10);
+    fetchPointsOverGamesWithPlayers("College Football", 10);
+    fetchPointsOverGamesWithPlayers("Women College BasketBall", 10);
+    fetchPointsOverGamesWithPlayers("Soccer", 10);
+    fetchPointsOverGamesWithPlayers("MLS", 10);
 });
